@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="linuxplex" description="LinuxPlex — self-hosted Plex media server">
+  <h1>// LINUXPLEX</h1>
+
+  <div class="box">
+    <div class="box-title">// STATUS</div>
+    <table class="ident-table">
+      <tr>
+        <td class="label">status</td>
+        <td class="status-active">● active</td>
+      </tr>
+      <tr>
+        <td class="label">type</td>
+        <td>self-hosting / linux</td>
+      </tr>
+      <tr>
+        <td class="label">hardware</td>
+        <td>salvaged PC (formerly my mom's)</td>
+      </tr>
+      <tr>
+        <td class="label">software</td>
+        <td>Linux · Plex Media Server</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="box-title">// WHAT IT IS</div>
+    <p>
+      A repurposed PC that would have otherwise ended up in the trash,
+      now running Linux and serving as a self-hosted Plex media server.
+    </p>
+    <p>
+      Because the cloud is just someone else's computer, and this one
+      was free.
+    </p>
+  </div>
+
+  <a href="/projects" class="back">&lt; back to projects</a>
+</Base>
+
+<style>
+  .ident-table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .ident-table tr + tr td { padding-top: 0.4rem; }
+  .label {
+    color: var(--muted);
+    padding-right: 2rem;
+    white-space: nowrap;
+    min-width: 8rem;
+  }
+  .status-active { color: var(--green); }
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .back:hover { color: var(--amber); }
+</style>
