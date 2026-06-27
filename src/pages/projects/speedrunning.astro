@@ -1,0 +1,191 @@
+---
+import Base from '../../layouts/Base.astro';
+
+function fmt(seconds: number): string {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  const ss = s % 1 === 0 ? String(s).padStart(2, '0') : s.toFixed(3).padStart(6, '0');
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${ss}`;
+  if (m > 0) return `${m}:${ss}`;
+  return `${ss}s`;
+}
+
+const pbs = ([
+  // World Records
+  { game: "Bump 'n' Jump",        category: '16 Scenes',                      time: 1189,     place: 1 },
+  { game: "Bump 'n' Jump",        category: '4 Scenes',                       time: 283.484,  place: 1 },
+  { game: 'Battleship (NES)',     category: 'Level 1',                        time: 658,      place: 1 },
+  { game: 'North & South',        category: 'Lvl. 1 Difficulty',             time: 53.083,   place: 1 },
+  { game: 'North & South',        category: 'Lvl. 2 Difficulty',             time: 47.067,   place: 1 },
+  { game: 'North & South',        category: 'Lvl. 3 Difficulty',             time: 43.483,   place: 1 },
+  { game: 'Paperboy (NES)',       category: 'Perfect Delivery',               time: 633.533,  place: 1 },
+  { game: 'Paperboy (GB)',        category: 'Perfect Delivery',               time: 666.085,  place: 1 },
+  { game: 'Paperboy (FC)',        category: 'Ultra-Super Perfect Delivery',   time: 525.95,   place: 1 },
+  { game: 'Paperboy (FC)',        category: 'Non-Perfect Delivery',           time: 505.233,  place: 1 },
+  { game: 'Pinball (NES)',        category: '100K (Game B)',                  time: 105.5,    place: 1 },
+  { game: 'Pinball (NES)',        category: 'Royal Flush (Game B)',           time: 28.9,     place: 1 },
+  { game: 'Sky Skipper',          category: 'Any% (Atari)',                   time: 179.283,  place: 1 },
+  { game: 'Tower of Druaga',      category: '50K',                            time: 48.933,   place: 1 },
+  { game: 'Vs. Pinball',          category: '100,000 Points',                 time: 148,      place: 1 },
+  { game: 'Wheel of Fortune: Junior Edition', category: 'VS. Cpu',           time: 192,      place: 1 },
+  { game: 'Wheel of Fortune: Family Edition', category: 'VS. Cpu',           time: 207,      place: 1 },
+  { game: 'Excitebike (NES)',     category: 'Track 1',                        time: 40.62,    place: 1 },
+  { game: 'Excitebike (NES)',     category: 'Track 1 (Lap 1)',                time: 24.14,    place: 1 },
+  { game: 'Excitebike (NES)',     category: 'Track 2 (Lap 1)',                time: 24.17,    place: 1 },
+  { game: 'Excitebike (NES)',     category: 'Track 3 (Lap 1)',                time: 26.22,    place: 1 },
+  { game: 'Excitebike (NES)',     category: 'Track 3 (Lap 1) — Switch',      time: 25.52,    place: 1 },
+  // Other PBs
+  { game: 'Classic Concentration', category: 'Any% (NES)',                   time: 115,      place: 2 },
+  { game: 'Dig Dug (NES)',        category: '1 Loop',                         time: 201.117,  place: 2 },
+  { game: 'Excitebike (NES)',     category: 'Track 1 (Lap 1) — Switch',      time: 24.28,    place: 2 },
+  { game: 'Excitebike (NES)',     category: 'Track 2 (Lap 1) — Switch',      time: 23.18,    place: 2 },
+  { game: 'Excitebike (NES)',     category: 'Track 4 (Lap 1) — Switch',      time: 26.04,    place: 2 },
+  { game: 'Excitebike (NES)',     category: 'Track 1 — Switch',              time: 47.68,    place: 2 },
+  { game: 'Fisher-Price: Perfect Fit', category: 'Single Player 100%',       time: 201.516,  place: 2 },
+  { game: 'Fisher-Price: I Can Remember', category: 'Single Player 100%',    time: 722,      place: 2 },
+  { game: 'Wheel of Fortune',     category: 'Any%',                           time: 155,      place: 2 },
+  { game: 'Wheel of Fortune: Junior Edition', category: 'Any%',              time: 151,      place: 2 },
+  { game: 'Wheel of Fortune: Family Edition', category: 'Any%',              time: 160,      place: 2 },
+  { game: 'Donkey Kong (Atari)',  category: '1 Loop',                         time: 36.367,   place: 3 },
+  { game: 'Excitebike (NES)',     category: 'Track 2 (challenge)',            time: 46.33,    place: 3 },
+  { game: 'Galaga (NES)',         category: '100K Points',                    time: 226.67,   place: 3 },
+  { game: 'Pinball (NES)',        category: 'Royal Flush (Game A)',           time: 49.5,     place: 3 },
+  { game: 'Excitebike (NES)',     category: 'Track 3 (challenge)',            time: 50.4,     place: 4 },
+  { game: 'Excitebike (NES)',     category: 'Track 5 — Switch',              time: 50.16,    place: 4 },
+  { game: 'Rocket Ranger',        category: 'Any%',                           time: 521.633,  place: 4 },
+  { game: 'Demon Attack',         category: '200 Score (A2600)',              time: 40.7,     place: 5 },
+  { game: 'Excitebike (NES)',     category: 'Track 4 (challenge)',            time: 54.08,    place: 5 },
+  { game: 'Pac-Man (Atari 2600)', category: '500 Points (No.1, A)',          time: 13.851,   place: 5 },
+  { game: 'Pac-Man (Atari 2600)', category: '1,000 Points (No.1, A)',        time: 38.733,   place: 5 },
+  { game: 'SimCity 2000',         category: 'DOS',                            time: 153,      place: 5 },
+  { game: 'Demon Attack',         category: '500 Score (A2600)',              time: 80.283,   place: 6 },
+  { game: 'Pinball (NES)',        category: '100K (Game A)',                  time: 118.167,  place: 6 },
+  { game: 'Demon Attack',         category: '100 Score (A2600)',              time: 18.183,   place: 9 },
+  { game: 'Pac-Man (Atari 2600)', category: '100 Points (No.1, A)',          time: 1.202,    place: 9 },
+  { game: 'Caesars Palace',       category: 'Sportscar (NES)',                time: 37.355,   place: 13 },
+  { game: 'Galaga (NES)',         category: '30K Points',                     time: 57.22,    place: 13 },
+  { game: 'Town & Country Surf',  category: 'Skateboarding (1 loop)',         time: 277,      place: 13 },
+  { game: 'Excitebike (NES)',     category: 'Full Game (Selection A)',        time: 375.64,   place: 14 },
+  { game: 'Millipede',            category: '10 Rounds',                      time: 55,       place: 17 },
+  { game: 'Bubble Bobble (NES)',  category: 'Any% (1 Player)',                time: 5864,     place: 27 },
+  { game: 'ALttP',                category: 'Major Glitches',                 time: 171,      place: 90 },
+  { game: 'ALttP',                category: 'No Major Glitches',              time: 1397,     place: 150 },
+  { game: 'DuckTales (NES)',      category: 'Any%',                           time: 505,      place: 341 },
+  { game: 'Dragster',             category: 'Best Time (Game 1)',             time: 6.51,     place: 356 },
+  { game: 'Super Mario Bros.',    category: 'Any%',                           time: 335,      place: 1365 },
+] as const).slice().sort((a, b) => a.place - b.place || a.game.localeCompare(b.game));
+---
+
+<Base title="speedrunning" description="Speedrunning — hollygorock.com">
+  <h1>// SPEEDRUNNING</h1>
+
+  <div class="box">
+    <div class="box-title">// STATUS</div>
+    <table class="ident-table">
+      <tr>
+        <td class="label">profile</td>
+        <td><a href="https://www.speedrun.com/users/hollygorock" target="_blank" rel="noopener">speedrun.com/users/hollygorock</a></td>
+      </tr>
+      <tr>
+        <td class="label">world records</td>
+        <td class="status-active">22</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="box-title">// CURRENT FOCUS</div>
+    <p>Working through individual levels in <strong>Excitebike (NES)</strong> with an eye toward a full game run. Also experimenting with <strong>Super Mario Bros.</strong></p>
+  </div>
+
+  <h2>// PERSONAL BESTS</h2>
+
+  <div class="pb-table-wrap">
+    <table class="pb-table">
+      <thead>
+        <tr>
+          <th>game</th>
+          <th>category</th>
+          <th>time</th>
+          <th>rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pbs.map(run => (
+          <tr class={run.place === 1 ? 'wr' : ''}>
+            <td>{run.game}</td>
+            <td>{run.category}</td>
+            <td class="time">{fmt(run.time)}</td>
+            <td class="place">
+              {run.place === 1 ? <span class="wr-badge">WR</span> : `#${run.place}`}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="/projects" class="back">&lt; back to projects</a>
+</Base>
+
+<style>
+  .ident-table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .ident-table tr + tr td { padding-top: 0.4rem; }
+  .label {
+    color: var(--muted);
+    padding-right: 2rem;
+    white-space: nowrap;
+    min-width: 8rem;
+  }
+  .status-active { color: var(--green); }
+
+  .pb-table-wrap { overflow-x: auto; }
+
+  .pb-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+  .pb-table th {
+    text-align: left;
+    color: var(--muted);
+    padding: 0.4rem 1rem 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    font-weight: normal;
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .pb-table td {
+    padding: 0.4rem 1rem 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--amber);
+  }
+  .pb-table tr:last-child td { border-bottom: none; }
+  .pb-table tr.wr td { color: var(--amber-glow); }
+
+  .time { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .place { white-space: nowrap; color: var(--muted); }
+
+  .wr-badge {
+    color: var(--green);
+    font-family: var(--font-pixel);
+    font-size: 0.45rem;
+    letter-spacing: 0.05em;
+  }
+
+  strong { color: var(--amber-glow); font-weight: normal; }
+
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .back:hover { color: var(--amber); }
+</style>
