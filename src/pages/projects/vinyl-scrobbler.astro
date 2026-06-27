@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="vinyl scrobbler" description="Vinyl scrobbler — ambient audio recognition to last.fm">
+  <h1>// VINYL SCROBBLER</h1>
+
+  <div class="box">
+    <div class="box-title">// STATUS</div>
+    <table class="ident-table">
+      <tr>
+        <td class="label">status</td>
+        <td class="status-active">● active</td>
+      </tr>
+      <tr>
+        <td class="label">type</td>
+        <td>automation / audio</td>
+      </tr>
+      <tr>
+        <td class="label">output</td>
+        <td><a href="https://www.last.fm/user/dexterclaire" target="_blank" rel="noopener">last.fm/user/dexterclaire</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="box-title">// WHAT IT DOES</div>
+    <p>
+      Listens to the office via microphone, identifies whatever is playing,
+      and scrobbles it to last.fm automatically. No manual input required —
+      put a record on and it handles the rest.
+    </p>
+    <p>
+      Album art is pulled and pushed to a 7" display in real time.
+    </p>
+  </div>
+
+  <a href="/projects" class="back">&lt; back to projects</a>
+</Base>
+
+<style>
+  .ident-table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .ident-table tr + tr td {
+    padding-top: 0.4rem;
+  }
+  .label {
+    color: var(--muted);
+    padding-right: 2rem;
+    white-space: nowrap;
+    min-width: 8rem;
+  }
+  .status-active {
+    color: var(--green);
+  }
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .back:hover {
+    color: var(--amber);
+  }
+</style>
