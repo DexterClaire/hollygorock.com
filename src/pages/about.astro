@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="about" description="About hollygorock — Nick from Smoke Rise, GA">
+  <h1>// ABOUT</h1>
+
+  <div class="box">
+    <div class="box-title">// IDENT</div>
+    <table class="ident-table">
+      <tr>
+        <td class="label">handle</td>
+        <td>hollygorock / DexterClaire</td>
+      </tr>
+      <tr>
+        <td class="label">name</td>
+        <td>Nick</td>
+      </tr>
+      <tr>
+        <td class="label">location</td>
+        <td>Smoke Rise, GA</td>
+      </tr>
+      <tr>
+        <td class="label">occupation</td>
+        <td>Musician · Gamer · Automator</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="box-title">// SIGNAL</div>
+    <p>
+      Making music, chasing times, scanning radio, building things that probably
+      don't need to exist. Based in the woods outside Atlanta.
+    </p>
+  </div>
+
+  <h2>// FIND ME</h2>
+  <ul class="link-list">
+    <li><a href="https://www.speedrun.com/users/hollygorock" target="_blank" rel="noopener">&gt; speedrun.com</a> <span class="muted">— runs and times</span></li>
+    <li><a href="https://hollygorock.bandcamp.com/" target="_blank" rel="noopener">&gt; bandcamp</a> <span class="muted">— music</span></li>
+    <li><a href="https://www.last.fm/user/dexterclaire" target="_blank" rel="noopener">&gt; last.fm</a> <span class="muted">— what I'm listening to</span></li>
+    <li><a href="https://github.com/DexterClaire" target="_blank" rel="noopener">&gt; github</a> <span class="muted">— code</span></li>
+    <li><a href="https://twitter.com/hollygorock" target="_blank" rel="noopener">&gt; twitter</a> <span class="muted">— noise</span></li>
+    <li><a href="https://www.instagram.com/hollygorock/" target="_blank" rel="noopener">&gt; instagram</a> <span class="muted">— pics and vids</span></li>
+  </ul>
+</Base>
+
+<style>
+  .ident-table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .ident-table tr + tr td {
+    padding-top: 0.4rem;
+  }
+  .label {
+    color: var(--muted);
+    padding-right: 2rem;
+    white-space: nowrap;
+    min-width: 8rem;
+  }
+
+  .link-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+</style>

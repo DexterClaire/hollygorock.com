@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "hollygorock.com" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <title>{title} // HOLLYGOROCK</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <div class="crt">
+      <header>
+        <div class="site-id">
+          <span class="prompt">&gt;</span>
+          <a href="/" class="site-name">HOLLYGOROCK.COM</a>
+          <span class="blink">_</span>
+        </div>
+        <nav>
+          <a href="/">~/home</a>
+          <a href="/projects">~/projects</a>
+          <a href="/about">~/about</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <div class="footer-line">────────────────────────────────────────────────────────</div>
+        <div class="footer-links">
+          <a href="https://www.speedrun.com/users/hollygorock" target="_blank" rel="noopener">speedrun.com</a>
+          <span class="sep">·</span>
+          <a href="https://hollygorock.bandcamp.com/" target="_blank" rel="noopener">bandcamp</a>
+          <span class="sep">·</span>
+          <a href="https://www.last.fm/user/dexterclaire" target="_blank" rel="noopener">last.fm</a>
+          <span class="sep">·</span>
+          <a href="https://twitter.com/hollygorock" target="_blank" rel="noopener">twitter</a>
+          <span class="sep">·</span>
+          <a href="https://www.instagram.com/hollygorock/" target="_blank" rel="noopener">instagram</a>
+        </div>
+        <div class="footer-copy">© 2026 hollygorock // this was a triumph</div>
+      </footer>
+    </div>
+  </body>
+</html>

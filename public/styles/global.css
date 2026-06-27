@@ -1,0 +1,196 @@
+/* ── tokens ─────────────────────────────────────────── */
+:root {
+  --bg:        #0a0a08;
+  --bg-alt:    #111109;
+  --amber:     #c9a84c;
+  --amber-dim: #8a6e2f;
+  --amber-glow:#e8c46a;
+  --green:     #4caf50;
+  --muted:     #5a5240;
+  --border:    #2a2518;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-mono:  'Space Mono', monospace;
+}
+
+/* ── reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── base ───────────────────────────────────────────── */
+html {
+  background: var(--bg);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--amber-glow);
+  text-shadow: 0 0 8px var(--amber);
+}
+
+/* ── CRT wrapper ─────────────────────────────────────── */
+.crt {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+/* scanline overlay */
+.crt::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  z-index: 999;
+}
+
+/* subtle screen flicker */
+@keyframes flicker {
+  0%   { opacity: 1; }
+  92%  { opacity: 1; }
+  93%  { opacity: 0.97; }
+  94%  { opacity: 1; }
+  96%  { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+.crt {
+  animation: flicker 8s infinite;
+}
+
+/* ── header ─────────────────────────────────────────── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.site-id {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prompt {
+  color: var(--amber-dim);
+}
+
+.site-name {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--amber-glow);
+  text-shadow: 0 0 12px var(--amber);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.blink {
+  animation: blink 1s step-end infinite;
+  color: var(--amber-glow);
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+nav a {
+  color: var(--muted);
+}
+nav a:hover {
+  color: var(--amber);
+  text-shadow: 0 0 6px var(--amber);
+}
+
+/* ── main content ───────────────────────────────────── */
+main {
+  min-height: 60vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-pixel);
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+
+h1 { font-size: 1.1rem; color: var(--amber-glow); text-shadow: 0 0 10px var(--amber); margin-bottom: 1.5rem; }
+h2 { font-size: 0.85rem; color: var(--amber); margin-bottom: 1rem; margin-top: 2rem; }
+h3 { font-size: 0.7rem; color: var(--amber-dim); margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; color: var(--amber); }
+
+/* ── box drawing helper ─────────────────────────────── */
+.box {
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  background: var(--bg-alt);
+}
+
+.box-title {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--amber-dim);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* ── footer ─────────────────────────────────────────── */
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-line {
+  color: var(--border);
+  letter-spacing: -0.05em;
+  overflow: hidden;
+}
+
+.footer-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sep { color: var(--border); }
+
+.footer-copy { color: var(--muted); font-size: 0.7rem; }
+
+/* ── utility ────────────────────────────────────────── */
+.muted { color: var(--muted); }
+.glow  { text-shadow: 0 0 8px var(--amber); }
+
+/* ── mobile ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .site-name { font-size: 0.5rem; }
+  nav { flex-wrap: wrap; gap: 1rem; }
+}
