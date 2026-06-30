@@ -20,11 +20,8 @@ const recentPosts = await Promise.all(
 
   <div class="box intro-box">
     <div class="box-title">// SYSTEM BOOT</div>
-    <p>
-      welcome to hollygorock.com<br />
-      <br />
-      this is my brain. it contains music, speedruns, radio signals, half-finished projects, and information no one asked for. statistically speaking you are probably me. but if you're not — hi, hope you find something worth your time.
-    </p>
+    <p class="bright lead">welcome to hollygorock.com</p>
+    <p class="blurb">this is my brain. it contains music, speedruns, radio signals, half-finished projects, and information no one asked for. statistically speaking you are probably me. but if you're not — hi, hope you find something worth your time.</p>
   </div>
 
   <h2>// RECENTLY</h2>
@@ -50,8 +47,15 @@ const recentPosts = await Promise.all(
 </div></Base>
 
 <style>
-  .intro-box p {
+  .lead {
     font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .blurb {
+    color: var(--amber-dim);
+    font-size: 0.85rem;
+    margin-bottom: 0;
   }
 
   .post-list {

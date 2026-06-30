@@ -186,8 +186,9 @@ footer {
 .footer-copy { color: var(--muted); font-size: 0.7rem; }
 
 /* ── utility ────────────────────────────────────────── */
-.muted { color: var(--muted); }
-.glow  { text-shadow: 0 0 8px var(--amber); }
+.muted  { color: var(--muted); }
+.glow   { text-shadow: 0 0 8px var(--amber); }
+.bright { color: var(--amber-glow); text-shadow: 0 0 8px var(--amber); }
 
 /* ── mobile ─────────────────────────────────────────── */
 @media (max-width: 600px) {

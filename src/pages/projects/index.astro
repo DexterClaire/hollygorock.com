@@ -5,6 +5,10 @@ import Base from '../../layouts/Base.astro';
 <Base title="projects" description="Projects — hollygorock.com">
   <h1>// PROJECTS</h1>
 
+  <div class="box">
+    <p class="bright lead">this is what i'm currently building. everything here is real, running, and probably held together with zip ties.</p>
+  </div>
+
   <ul class="project-list">
     <li>
       <a href="/projects/speedrunning">&gt; speedrunning</a>
@@ -34,6 +38,11 @@ import Base from '../../layouts/Base.astro';
 </Base>
 
 <style>
+  .lead {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
   .project-list {
     list-style: none;
     display: flex;

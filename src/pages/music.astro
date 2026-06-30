@@ -19,7 +19,7 @@ const posts = await Promise.all(
 
   <div class="box intro-box">
     <div class="box-title">// SIGNAL SOURCE</div>
-    <p>
+    <p class="bright lead">
       Songs, demos, and works-in-progress from the hollygorock band.<br />
       <a href="https://hollygorock.bandcamp.com/" target="_blank" rel="noopener">hollygorock.bandcamp.com</a>
     </p>
@@ -72,13 +72,14 @@ const posts = await Promise.all(
 </Base>
 
 <style>
-  .intro-box p {
+  .lead {
     font-size: 0.85rem;
+    margin-bottom: 0.25rem;
   }
 
   .warning {
     color: var(--amber-dim);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     margin-top: 0.25rem;
     margin-bottom: 0;
   }
