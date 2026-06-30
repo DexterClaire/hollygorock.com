@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+const entries = (await getCollection('music')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const posts = await Promise.all(
+  entries.map(async (entry) => ({
+    data: entry.data,
+    Content: (await render(entry)).Content,
+  }))
+);
+---
+
+<Base title="music" description="Music — hollygorock.com">
+  <h1>// MUSIC</h1>
+
+  <div class="box intro-box">
+    <div class="box-title">// SIGNAL SOURCE</div>
+    <p>
+      Songs, demos, and works-in-progress from the hollygorock band.<br />
+      <a href="https://hollygorock.bandcamp.com/" target="_blank" rel="noopener">hollygorock.bandcamp.com</a>
+    </p>
+    <p class="warning">
+      ⚠ vastly, greatly, majorly under construction. proof-of-concept only. do not adjust your set.
+    </p>
+  </div>
+
+  <div class="track-list">
+    {posts.map(({ data, Content }) => (
+      <div class="box track-card">
+        <div class="track-header">
+          <span class="track-title">&gt; {data.title}</span>
+          {data.tag && <span class="tag">[{data.tag}]</span>}
+          <span class="date">{data.date.toISOString().slice(0, 10)}</span>
+        </div>
+        <div class="player-wrap">
+          <iframe
+            style={`border: 0; width: 100%; height: ${data.embedHeight};`}
+            src={data.embedSrc}
+            seamless
+          />
+        </div>
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .intro-box p {
+    font-size: 0.85rem;
+  }
+
+  .warning {
+    color: var(--amber-dim);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+
+  .track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .track-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .track-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .track-title {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--amber-glow);
+    font-weight: 700;
+  }
+
+  .tag {
+    font-family: var(--font-pixel);
+    font-size: 0.45rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  .player-wrap {
+    margin-top: 0.1rem;
+  }
+
+  .prose {
+    font-size: 0.85rem;
+    color: var(--amber-dim);
+    line-height: 1.7;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 0.75rem;
+    color: var(--amber-dim);
+  }
+
+  .prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .prose:empty {
+    display: none;
+  }
+</style>
