@@ -24,7 +24,7 @@ const recentPosts = await Promise.all(
     <p class="blurb">this is my brain. it contains music, speedruns, radio signals, half-finished projects, and information no one asked for. statistically speaking you are probably me. but if you're not — hi, hope you find something worth your time.</p>
   </div>
 
-  <h2>// BLOG</h2>
+  <h2 class="blog-header">// BLOG</h2>
 
   <div class="post-list">
     {recentPosts.map(({ slug, data, Content }) => (
@@ -47,6 +47,13 @@ const recentPosts = await Promise.all(
 </div></Base>
 
 <style>
+  .blog-header {
+    font-size: 1.1rem;
+    color: var(--amber-glow);
+    text-shadow: 0 0 10px var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
   .lead {
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
