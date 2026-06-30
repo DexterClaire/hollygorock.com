@@ -96,7 +96,7 @@ header {
 
 .site-name {
   font-family: var(--font-pixel);
-  font-size: 1.222rem;
+  font-size: 1.6rem;
   letter-spacing: 0.05em;
   color: var(--amber-glow);
   text-shadow: 0 0 12px var(--amber);
