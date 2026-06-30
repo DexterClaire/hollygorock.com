@@ -5,8 +5,10 @@ import Base from '../../layouts/Base.astro';
 <Base title="projects" description="Projects — hollygorock.com">
   <h1>// PROJECTS</h1>
 
-  <div class="box">
+  <div class="box intro-box">
+    <div class="box-title">// DOS 6.2</div>
     <p class="bright lead">this is what i'm currently building. everything here is real, running, and probably held together with zip ties.</p>
+    <p class="warning">⚠ vastly, greatly, majorly under construction. proof-of-concept only. do not adjust your set.</p>
   </div>
 
   <ul class="project-list">
@@ -39,6 +41,12 @@ import Base from '../../layouts/Base.astro';
 
 <style>
   .lead {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .warning {
+    color: var(--amber-dim);
     font-size: 0.85rem;
     margin-bottom: 0;
   }
