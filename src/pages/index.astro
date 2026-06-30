@@ -30,7 +30,7 @@ const recentPosts = await Promise.all(
     {recentPosts.map(({ slug, data, Content }) => (
       <div class="box post-card">
         <div class="post-header">
-          <a href={`/blog/${slug}`} class="post-title">&gt; {data.title}</a>
+          <a href={`/blog/${slug}`} class="post-title bright">&gt; {data.title}</a>
           {data.tag && <span class="tag">[{data.tag}]</span>}
           <span class="date">{data.date.toISOString().slice(0, 10)}</span>
         </div>
@@ -87,8 +87,6 @@ const recentPosts = await Promise.all(
   .post-title {
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    color: var(--amber-glow);
-    text-shadow: 0 0 8px var(--amber);
   }
 
   .tag {
