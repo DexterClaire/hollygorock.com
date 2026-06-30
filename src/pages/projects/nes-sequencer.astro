@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="nes procedural looper" description="NES Procedural Looper — hollygorock.com">
+  <h1>// NES PROCEDURAL LOOPER</h1>
+
+  <div class="box">
+    <div class="box-title">// STATUS</div>
+    <table class="ident-table">
+      <tr>
+        <td class="label">status</td>
+        <td class="status-active">● active</td>
+      </tr>
+      <tr>
+        <td class="label">type</td>
+        <td>generative music toy</td>
+      </tr>
+      <tr>
+        <td class="label">hardware</td>
+        <td>original NES hardware</td>
+      </tr>
+      <tr>
+        <td class="label">language</td>
+        <td>6502 assembly</td>
+      </tr>
+      <tr>
+        <td class="label">channels</td>
+        <td>Pulse 1 · Triangle · Noise</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="box-title">// WHAT IT IS</div>
+    <p>
+      NES Procedural Looper is a generative music toy running on original NES hardware,
+      built entirely in 6502 assembly. It uses the NES's built-in audio channels to create
+      evolving, randomized musical loops in real time — Pulse 1 carries a procedurally
+      generated melody, the Triangle channel drives a walking bass line, and the Noise
+      channel handles a full 16-step drum pattern with kicks, snares, and hi-hats.
+    </p>
+    <p>
+      The sequencer follows real music theory rules, generating melodies from chord tones
+      and scale degrees across major and minor modes, with a four-chord progression that
+      changes every bar. A live HUD displays the current key, mode, BPM, duty cycle, and
+      a seed value so every generated loop is traceable.
+    </p>
+    <p>
+      Players can transpose the key, switch modes, swap timbres, and queue new melody and
+      bass variations on the fly — or pause playback to drop into an edit mode and manually
+      sculpt the drum pattern step by step using the controller. It's equal parts music tool
+      and NES tech demo, built to run on the real thing.
+    </p>
+  </div>
+
+  <a href="/projects" class="back">&lt; back to projects</a>
+</Base>
+
+<style>
+  .ident-table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .ident-table tr + tr td { padding-top: 0.4rem; }
+  .label {
+    color: var(--muted);
+    padding-right: 2rem;
+    white-space: nowrap;
+    min-width: 8rem;
+  }
+  .status-active { color: var(--green); }
+  .back {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .back:hover { color: var(--amber); }
+</style>
