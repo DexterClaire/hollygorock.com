@@ -19,4 +19,13 @@ const music = defineCollection({
   }),
 });
 
-export const collections = { music };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    tag: z.string().optional(),
+  }),
+});
+
+export const collections = { music, blog };

@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, tag } = entry.data;
+---
+
+<Base title={title} description={`${title} — hollygorock.com`}>
+  <div class="post-header">
+    <h1>&gt; {title}</h1>
+    <div class="meta">
+      {tag && <span class="tag">[{tag}]</span>}
+      <span class="date">{date.toISOString().slice(0, 10)}</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  <div class="back">
+    <a href="/blog">&lt; back to blog</a>
+  </div>
+</Base>
+
+<style>
+  .post-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-header h1 {
+    margin-bottom: 0.4rem;
+  }
+
+  .meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .tag {
+    font-family: var(--font-pixel);
+    font-size: 0.45rem;
+    color: var(--amber-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .date {
+    color: var(--muted);
+  }
+
+  .prose {
+    font-size: 0.9rem;
+    color: var(--amber-dim);
+    line-height: 1.8;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1rem;
+    color: var(--amber-dim);
+  }
+
+  .prose :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .back {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+  }
+</style>

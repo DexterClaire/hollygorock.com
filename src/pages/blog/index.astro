@@ -1,12 +1,12 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 
-const entries = (await getCollection('blog'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const entries = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 
-const recentPosts = await Promise.all(
+const posts = await Promise.all(
   entries.map(async (entry) => ({
     slug: entry.id,
     data: entry.data,
@@ -15,20 +15,11 @@ const recentPosts = await Promise.all(
 );
 ---
 
-<Base title="home">
-  <h1>// HOME</h1>
-
-  <div class="box">
-    <p>
-      welcome to hollygorock.com<br />
-      <span class="muted">a node for music, gaming, radio, code, and other signals.</span>
-    </p>
-  </div>
-
-  <h2>// RECENTLY</h2>
+<Base title="blog" description="Blog — hollygorock.com">
+  <h1>// BLOG</h1>
 
   <div class="post-list">
-    {recentPosts.map(({ slug, data, Content }) => (
+    {posts.map(({ slug, data, Content }) => (
       <div class="box post-card">
         <div class="post-header">
           <a href={`/blog/${slug}`} class="post-title">&gt; {data.title}</a>
@@ -40,18 +31,15 @@ const recentPosts = await Promise.all(
         </div>
       </div>
     ))}
-    <a href="/blog" class="see-all muted">see all →</a>
   </div>
-
-<div class="construction">
-  <img src="/under-construction.gif" alt="under construction" />
-</div></Base>
+</Base>
 
 <style>
   .post-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
 
   .post-card {
@@ -101,17 +89,5 @@ const recentPosts = await Promise.all(
 
   .prose :global(p:last-child) {
     margin-bottom: 0;
-  }
-
-  .see-all {
-    font-size: 0.8rem;
-  }
-
-  .construction {
-    margin-top: 2.5rem;
-    text-align: center;
-  }
-  .construction img {
-    image-rendering: pixelated;
   }
 </style>
