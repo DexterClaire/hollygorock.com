@@ -190,6 +190,28 @@ footer {
 .glow   { text-shadow: 0 0 8px var(--amber); }
 .bright { color: var(--amber-glow); text-shadow: 0 0 8px var(--amber); }
 
+/* ── project pages ──────────────────────────────────── */
+.ident-table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.ident-table tr + tr td { padding-top: 0.4rem; }
+.ident-table .label {
+  color: var(--muted);
+  padding-right: 2rem;
+  white-space: nowrap;
+  min-width: 8rem;
+}
+.status-active { color: var(--green); }
+.back {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.back:hover { color: var(--amber); }
+
 /* ── tables ─────────────────────────────────────────── */
 table {
   overflow-x: auto;
